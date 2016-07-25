@@ -5,10 +5,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
-import org.mockito.internal.util.collections.ListUtil;
-import org.springframework.data.geo.Point;
 import org.springframework.util.Assert;
-import org.springframework.util.CollectionUtils;
 
 public class Line {
 
