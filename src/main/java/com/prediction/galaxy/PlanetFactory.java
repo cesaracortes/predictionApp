@@ -6,7 +6,7 @@ import com.prediction.planet.Planet;
 public class PlanetFactory {
 
 	public static IPlanet createVulcano() {
-		Velocity velocity = Velocity.withAmountAndUnit(5.0, Unit.GRADE_PER_DAY);
+		Velocity velocity = Velocity.withAmountAndUnit(-5.0, Unit.GRADE_PER_DAY);
 		return Planet.named("Vulcano").withVelocity(velocity);
 	}
 
