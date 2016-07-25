@@ -12,6 +12,8 @@ import java.util.Set;
 import org.springframework.util.Assert;
 
 import com.galaxy.exceptions.PlanetsInTheSameOrbitException;
+import com.galaxy.gemoetrics.Line;
+import com.galaxy.gemoetrics.Triangle;
 import com.prediction.planet.IPlanet;
 
 public class UbicationSystem implements IUbicationSystem {

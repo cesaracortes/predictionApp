@@ -1,4 +1,4 @@
-package com.prediction.galaxy;
+package com.galaxy.gemoetrics;
 
 import java.awt.geom.Point2D;
 import java.util.LinkedList;
@@ -7,7 +7,7 @@ import java.util.Set;
 
 import org.springframework.util.Assert;
 
-public class Line {
+public class Line implements IGeometricShape{
 
 	private Point2D p1;
 	private Point2D p2;
@@ -23,9 +23,11 @@ public class Line {
 
 	}
 
-	public boolean contains(Set<Point2D> positions) {
-		return allHaveTheSameXorYPos(positions) || positions.stream().allMatch(aPoint -> contains(aPoint));
 
+
+	@Override
+	public Boolean contains(Set<Point2D> points) {
+		return allHaveTheSameXorYPos(points) || points.stream().allMatch(aPoint -> contains(aPoint));
 	}
 
 	private boolean allHaveTheSameXorYPos(Set<Point2D> positions) {
@@ -33,7 +35,8 @@ public class Line {
 		positions.stream().allMatch(aPoint -> aPoint.getY() == p1.getY() && aPoint.getY() == p1.getY());
 	}
 
-	private Boolean contains(Point2D aPoint2) {
+	@Override
+	public Boolean contains(Point2D aPoint2) {
 		return aPoint2.getY() - ((getInclination() * aPoint2.getX() + getConstant()) / getYCoef()) < 0.00001 ; // Error gap to be close to 0
 	}
 

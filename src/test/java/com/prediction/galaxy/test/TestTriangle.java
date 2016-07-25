@@ -5,7 +5,7 @@ import java.awt.Point;
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.prediction.galaxy.Triangle;
+import com.galaxy.gemoetrics.Triangle;
 
 public class TestTriangle {
 	

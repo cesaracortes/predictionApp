@@ -1,8 +1,9 @@
-package com.prediction.galaxy;
+package com.galaxy.gemoetrics;
 
 import java.awt.geom.Point2D;
+import java.util.Set;
 
-public class Triangle {
+public class Triangle implements IGeometricShape {
 
 	private Point2D p1;
 	private Point2D p2;
@@ -14,7 +15,15 @@ public class Triangle {
 		this.p3 = c;
 	}
 
-	public boolean contains(Point2D p) {
+	@Override
+	public Boolean contains(Set<Point2D> points) {
+
+		return  points.stream().allMatch(aPoint -> contains(aPoint));
+
+	}
+
+	@Override
+	public Boolean contains(Point2D p) {
 		/* Calculate area of triangle ABC */
 		double A = area(p1.getX(), p1.getY(), p2.getX(), p2.getY(), p3.getX(), p3.getY());
 

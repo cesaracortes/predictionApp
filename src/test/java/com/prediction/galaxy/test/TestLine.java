@@ -4,7 +4,7 @@ import java.awt.geom.Point2D;
 
 import org.junit.Test;
 
-import com.prediction.galaxy.Line;
+import com.galaxy.gemoetrics.Line;
 
 public class TestLine {
 	
