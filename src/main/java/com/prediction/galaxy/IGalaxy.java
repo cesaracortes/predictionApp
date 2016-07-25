@@ -4,19 +4,16 @@ import java.awt.geom.Point2D;
 
 import com.prediction.planet.IPlanet;
 
-
 public interface IGalaxy {
 
 	boolean hasPlanets();
 
 	Sun sun();
 
-	//TODO cambiar integers por distance
+	// TODO cambiar integers por distance
 	void addPlanet(IPlanet aPlanet, Integer distanceFromSun);
 
-	Integer distanceTo(IPlanet aPlanet);
-
-	Object distanceTraveledAtDay(Integer dayNumber ,IPlanet vulcano);
+	Distance distanceTraveledAtDay(Integer dayNumber, IPlanet vulcano);
 
 	boolean arePlanetsAlignedAtDay(Integer i);
 
@@ -26,6 +23,6 @@ public interface IGalaxy {
 
 	Boolean sunIsInsidePlanetsTriangleAtDay(Integer aDayNumber);
 
-
+	Distance distanceFromSun(IPlanet aPlanet);
 
 }

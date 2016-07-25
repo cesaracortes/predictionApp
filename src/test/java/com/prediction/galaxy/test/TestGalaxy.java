@@ -53,18 +53,10 @@ public class TestGalaxy {
 		IGalaxy aGalaxy = Galaxy.bigBang();
 		IPlanet vulcano = PlanetFactory.createVulcano();
 		aGalaxy.addPlanet(vulcano, 500);
-		assertEquals(new Integer(500), aGalaxy.distanceTo(vulcano));
+		assertEquals(Distance.amountWithUnit(500.0, Unit.KM), aGalaxy.distanceFromSun(vulcano));
 	}
 
-	// Planets position
 
-	@Test
-	public void planetStartAtPositionRelativeToSun() {
-		IGalaxy aGalaxy = Galaxy.bigBang();
-		IPlanet vulcano = PlanetFactory.createVulcano();
-		aGalaxy.addPlanet(vulcano, 500);
-		assertEquals(new Point2D.Double(0, 500), aGalaxy.positionAtDay(0, vulcano));
-	}
 
 
 	

@@ -1,7 +1,14 @@
 package com.prediction.galaxy;
 
 import java.awt.geom.Point2D;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
+
+import org.mockito.internal.util.collections.ListUtil;
+import org.springframework.data.geo.Point;
+import org.springframework.util.Assert;
+import org.springframework.util.CollectionUtils;
 
 public class Line {
 
@@ -19,12 +26,12 @@ public class Line {
 
 	}
 
-	public boolean contains(List<Point2D> positions) {
+	public boolean contains(Set<Point2D> positions) {
 		return allHaveTheSameXorYPos(positions) || positions.stream().allMatch(aPoint -> contains(aPoint));
 
 	}
 
-	private boolean allHaveTheSameXorYPos(List<Point2D> positions) {
+	private boolean allHaveTheSameXorYPos(Set<Point2D> positions) {
 		return positions.stream().allMatch(aPoint -> aPoint.getX() == p1.getX() && aPoint.getX() == p2.getX()) ||
 		positions.stream().allMatch(aPoint -> aPoint.getY() == p1.getY() && aPoint.getY() == p1.getY());
 	}
@@ -52,6 +59,13 @@ public class Line {
 	
 	public Double getYCoef(){
 		return  (p2.getX() - p1.getX());
+	}
+
+	public static boolean areAligned(Set<Point2D> positions) {
+		Assert.isTrue(positions.size() >= 2); //Se necesitan al menos dos puntos para definir la recta
+		List<Point2D> list = new LinkedList<>(positions);
+		Line line = new Line(list.get(0), list.get(1));
+		return line.contains(positions);
 	}
 
 }
