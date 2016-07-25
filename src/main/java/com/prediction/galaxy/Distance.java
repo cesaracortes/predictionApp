@@ -3,10 +3,15 @@ package com.prediction.galaxy;
 public class Distance {
 
 	private Double amount;
+
+	public Double amount() {
+		return amount;
+	}
+
 	private Unit aUnit;
 
 	private Distance(Double amount, Unit aUnit) {
-		this.amount = amount;
+		this.amount = Math.abs(amount);
 		this.aUnit = aUnit;
 	}
 
