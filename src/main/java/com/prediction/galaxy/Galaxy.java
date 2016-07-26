@@ -50,16 +50,19 @@ public class Galaxy implements IGalaxy {
 
 	@Override
 	public boolean arePlanetsAlignedAtDay(Integer aDayNumber) {
+		planets.stream().forEach(aPlanet -> ubicationSystem.calculatePositionFor(aPlanet, aDayNumber));
 		return ubicationSystem.arePlanetsAlignedAtDay(aDayNumber);
 	}
 
 	@Override
 	public boolean allAreAlignedToSunAtDay(Integer aDayNumber) {
+		planets.stream().forEach(aPlanet -> ubicationSystem.calculatePositionFor(aPlanet, aDayNumber));
 		return ubicationSystem.allAreAlignedToSunAtDay(aDayNumber);
 	}
 
 	@Override
 	public Boolean sunIsInsidePlanetsTriangleAtDay(Integer aDayNumber) {
+		planets.stream().forEach(aPlanet -> ubicationSystem.calculatePositionFor(aPlanet, aDayNumber));
 		return sunIsInsidePlanetsTriangleAtDay(aDayNumber);
 	}
 
