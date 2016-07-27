@@ -1,6 +1,6 @@
-package com.prediction.planet;
+package com.prediction.domain.planet;
 
-import com.prediction.galaxy.Velocity;
+import com.prediction.domain.galaxy.Velocity;
 
 public interface IPlanet {
 

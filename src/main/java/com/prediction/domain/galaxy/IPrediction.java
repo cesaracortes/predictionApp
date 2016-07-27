@@ -1,4 +1,4 @@
-package com.prediction.galaxy;
+package com.prediction.domain.galaxy;
 
 public interface IPrediction {
 
@@ -9,5 +9,7 @@ public interface IPrediction {
 	Boolean isANormalDay();
 
 	Boolean isARainyDay();
+
+	Object to_json();
 
 }

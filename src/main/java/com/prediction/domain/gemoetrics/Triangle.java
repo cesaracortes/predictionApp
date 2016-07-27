@@ -1,4 +1,4 @@
-package com.galaxy.gemoetrics;
+package com.prediction.domain.gemoetrics;
 
 import java.awt.geom.Point2D;
 import java.util.Set;

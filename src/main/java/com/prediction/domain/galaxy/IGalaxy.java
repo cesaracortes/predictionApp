@@ -1,8 +1,9 @@
-package com.prediction.galaxy;
+package com.prediction.domain.galaxy;
 
 import java.awt.geom.Point2D;
 
-import com.prediction.planet.IPlanet;
+import com.prediction.domain.planet.IPlanet;
+
 
 public interface IGalaxy {
 
@@ -24,5 +25,6 @@ public interface IGalaxy {
 	Boolean sunIsInsidePlanetsTriangleAtDay(Integer aDayNumber);
 
 	Distance distanceFromSun(IPlanet aPlanet);
+
 
 }

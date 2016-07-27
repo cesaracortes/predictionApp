@@ -1,7 +1,7 @@
-package com.prediction.planet;
+package com.prediction.domain.planet;
 
-import com.galaxy.exceptions.CreationException;
-import com.prediction.galaxy.Velocity;
+import com.prediction.domain.exceptions.CreationException;
+import com.prediction.domain.galaxy.Velocity;
 
 public class Planet implements IPlanet {
 

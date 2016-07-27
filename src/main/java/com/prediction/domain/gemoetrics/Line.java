@@ -1,11 +1,14 @@
-package com.galaxy.gemoetrics;
+package com.prediction.domain.gemoetrics;
 
 import java.awt.geom.Point2D;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Random;
 import java.util.Set;
 
 import org.springframework.util.Assert;
+
+import com.prediction.domain.galaxy.RoundUtils;
 
 public class Line implements IGeometricShape{
 
@@ -37,7 +40,8 @@ public class Line implements IGeometricShape{
 
 	@Override
 	public Boolean contains(Point2D aPoint2) {
-		return aPoint2.getY() - ((getInclination() * aPoint2.getX() + getConstant()) / getYCoef()) < 0.00001 ; // Error gap to be close to 0
+		double d = RoundUtils.round(getInclination() * aPoint2.getX() + getConstant()) / getYCoef();
+		return RoundUtils.round(aPoint2.getY() - d) < 0.00001 ; // Error gap to be close to 0
 	}
 
 	@Override

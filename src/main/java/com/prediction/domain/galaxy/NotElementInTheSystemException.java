@@ -1,5 +1,5 @@
-package com.prediction.galaxy;
+package com.prediction.domain.galaxy;
 
-public class NotPlanetInTheSystemException extends RuntimeException {
+public class NotElementInTheSystemException extends RuntimeException {
 
 }

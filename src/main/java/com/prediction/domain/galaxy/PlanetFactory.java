@@ -1,7 +1,7 @@
-package com.prediction.galaxy;
+package com.prediction.domain.galaxy;
 
-import com.prediction.planet.IPlanet;
-import com.prediction.planet.Planet;
+import com.prediction.domain.planet.IPlanet;
+import com.prediction.domain.planet.Planet;
 
 public class PlanetFactory {
 

@@ -1,22 +1,21 @@
-package com.prediction.galaxy;
+package com.prediction.domain.galaxy;
 
-import java.awt.Point;
 import java.awt.geom.Point2D;
 
-import com.prediction.planet.IPlanet;
+public interface IUbicationSystem<T> {
 
-public interface IUbicationSystem {
+	void put(T aPlanet, Point2D place);
 
-	void put(IPlanet aPlanet, Point place);
+	Distance distanceFromCenter(T aPlanet);
 
-	Distance distanceFromSun(IPlanet aPlanet);
+	Boolean arePointsAligned();
 
-	Point2D calculatePositionFor(IPlanet aPlanet, Integer dayNumber);
+	Boolean pointsAreAlignedToTheCenter();
 
-	Boolean arePlanetsAlignedAtDay(Integer aDayNumber);
+	Boolean isCenterInsidePoints();
 
-	Boolean sunIsInsidePlanetsTriangleAtDay(Integer aDayNumber);
+	Point2D positionFor(T aPlanet);
 
-	Boolean allAreAlignedToSunAtDay(Integer aDayNumber);
+	void remove(Point2D previousPosition);
 
 }

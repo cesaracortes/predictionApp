@@ -1,4 +1,4 @@
-package com.galaxy.exceptions;
+package com.prediction.domain.exceptions;
 
 public class CreationException extends RuntimeException {
 
