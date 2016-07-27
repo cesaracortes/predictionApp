@@ -4,9 +4,9 @@ import java.awt.geom.Point2D;
 
 public interface IUbicationSystem<T> {
 
-	void put(T aPlanet, Point2D place);
+	void put(T element, Point2D place);
 
-	Distance distanceFromCenter(T aPlanet);
+	Distance distanceFromCenter(T element);
 
 	Boolean arePointsAligned();
 
@@ -17,5 +17,8 @@ public interface IUbicationSystem<T> {
 	Point2D positionFor(T aPlanet);
 
 	void remove(Point2D previousPosition);
+
+	double perimeteForPoint();
+	
 
 }

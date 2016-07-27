@@ -4,6 +4,10 @@ import java.awt.Point;
 import java.awt.geom.Point2D;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import com.prediction.domain.planet.IPlanet;
 
@@ -79,5 +83,18 @@ public class Galaxy implements IGalaxy {
 	public Distance distanceFromSun(IPlanet aPlanet) {
 		return ubicationSystem.distanceFromCenter(aPlanet);
 	}
+
+	@Override
+	public double perimeterInThatDay(Integer dayNumber) {
+		return ubicationSystem.perimeteForPoint();
+	}
+
+	@Override
+	public List<Point2D> planetsPositions(Integer dayNumber) {
+		Stream<Point2D> map = planets.stream().map(aPlanet -> ubicationSystem.positionFor(aPlanet));
+		return map.collect(Collectors.toList());
+		
+	}
+
 
 }

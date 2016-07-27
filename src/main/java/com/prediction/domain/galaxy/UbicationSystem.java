@@ -9,17 +9,17 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import org.h2.util.MathUtils;
 import org.springframework.util.Assert;
 
 import com.prediction.domain.exceptions.PlanetsInTheSameOrbitException;
+import com.prediction.domain.gemoetrics.IGeometricShape;
 import com.prediction.domain.gemoetrics.Line;
 import com.prediction.domain.gemoetrics.Triangle;
-import com.prediction.domain.planet.IPlanet;
 
 public class UbicationSystem<T> implements IUbicationSystem<T> {
 
 	private Map<Point2D, T> occupiedPlaces = new HashMap<Point2D, T>();
+	
 
 	@Override
 	public void put(T aPlanet, Point2D place) {
@@ -46,18 +46,6 @@ public class UbicationSystem<T> implements IUbicationSystem<T> {
 
 	}
 
-//	@Override
-//	public Point2D calculatePositionFor(T aPlanet, Integer dayNumber) {
-////		double x_pos = (distanceFromSun(aPlanet).amount() * Math.cos(radiansTraveledAtDay(aPlanet, dayNumber)));
-////		double y_pos = (distanceFromSun(aPlanet).amount() * Math.sin(radiansTraveledAtDay(aPlanet, dayNumber)));
-////		return new Point2D.Double(x_pos, y_pos);
-//		return null;
-//	}
-
-//	private double radiansTraveledAtDay(T aPlanet, Integer dayNumber) {
-//		double degrees = 90 - (aPlanet.velocity().amount() * dayNumber);
-//		return Math.toRadians(degrees);
-//	}
 
 	@Override
 	public Boolean arePointsAligned() {
@@ -69,7 +57,6 @@ public class UbicationSystem<T> implements IUbicationSystem<T> {
 		return occupiedPlaces.keySet();
 	}
 
-	// TODO ver mejorar codigo
 	private boolean areAligned(Set<Point2D> positions) {
 		return Line.areAligned(positions);
 	}
@@ -96,6 +83,12 @@ public class UbicationSystem<T> implements IUbicationSystem<T> {
 		occupiedPlaces.remove(position);
 	}
 
-	
+	@Override
+	public double perimeteForPoint() {
+		Set<Point2D> positions = getPositions();
+		List<Point2D> points = new ArrayList<Point2D>(positions);
+		Triangle aTriangle = new Triangle(points.get(0), points.get(1), points.get(2));
+		return aTriangle.perimeter();
+	}
 
 }

@@ -2,9 +2,9 @@ package com.prediction.repostory;
 
 import org.springframework.data.repository.CrudRepository;
 
-import com.prediction.Prediction;
+import com.prediction.Wheather;
 
-public interface PredictionRespository extends CrudRepository<Prediction, Integer>{
+public interface PredictionRespository extends CrudRepository<Wheather, Integer>{
 	
 	
 

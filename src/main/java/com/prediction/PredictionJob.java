@@ -1,5 +1,7 @@
 package com.prediction;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.springframework.boot.context.event.ApplicationReadyEvent;
@@ -21,9 +23,9 @@ public class PredictionJob  implements ApplicationListener<ApplicationReadyEvent
 	public  void execute() {
 		int totalDays = 365*10;
 		IGalaxy aGalaxy = createGalaxyWithPlanets();
-		for (int dayNumber = 1; dayNumber < totalDays ; dayNumber++) {
-			repo.save(Prediction.forDay(dayNumber, aGalaxy));
-		}
+		List<Wheather> predictions = Prediction.predictionsUntil(aGalaxy,totalDays);
+		repo.save(predictions);
+		
 		
 	}
 

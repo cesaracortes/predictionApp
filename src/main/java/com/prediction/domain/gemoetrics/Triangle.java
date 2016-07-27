@@ -3,6 +3,8 @@ package com.prediction.domain.gemoetrics;
 import java.awt.geom.Point2D;
 import java.util.Set;
 
+import com.prediction.domain.galaxy.RoundUtils;
+
 public class Triangle implements IGeometricShape {
 
 	private Point2D p1;
@@ -42,6 +44,13 @@ public class Triangle implements IGeometricShape {
 
 	double area(double d, double e, double f, double g, double h, double i) {
 		return Math.abs((d * (g - i) + f * (i - e) + h * (e - g)) / 2.0);
+	}
+
+	public double perimeter() {
+		double a = RoundUtils.round(p1.distance(p2));
+		double b = RoundUtils.round(p2.distance(p3));
+		double c = RoundUtils.round(p3.distance(p1));
+		return RoundUtils.round(a + b + c);
 	}
 
 }
