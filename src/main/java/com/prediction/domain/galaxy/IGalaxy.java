@@ -10,8 +10,6 @@ public interface IGalaxy {
 
 	boolean hasPlanets();
 
-	Sun sun();
-
 	// TODO cambiar integers por distance
 	void addPlanet(IPlanet aPlanet, Integer distanceFromSun);
 
@@ -27,7 +25,7 @@ public interface IGalaxy {
 
 	Distance distanceFromSun(IPlanet aPlanet);
 
-	double perimeterInThatDay(Integer aDayNumber);
+	double perimeterAtDay(Integer aDayNumber);
 
 	List<Point2D> planetsPositions(Integer dayNumber);
 

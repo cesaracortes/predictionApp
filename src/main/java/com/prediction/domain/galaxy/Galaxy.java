@@ -12,7 +12,6 @@ import java.util.stream.Stream;
 import com.prediction.domain.planet.IPlanet;
 
 public class Galaxy implements IGalaxy {
-	private Sun sun = new Sun();
 	private IUbicationSystem<IPlanet> ubicationSystem = new UbicationSystem<>();
 	private Collection<IPlanet> planets = new HashSet<IPlanet>();
 	private PositionCalculator positionCalculator = new PositionCalculator();
@@ -33,9 +32,6 @@ public class Galaxy implements IGalaxy {
 		return planets;
 	}
 
-	public Sun sun() {
-		return sun;
-	}
 
 	public void addPlanet(IPlanet aPlanet, Integer distranceFromSun) {
 		ubicationSystem.put(aPlanet, new Point(distranceFromSun,0));
@@ -85,7 +81,7 @@ public class Galaxy implements IGalaxy {
 	}
 
 	@Override
-	public double perimeterInThatDay(Integer dayNumber) {
+	public double perimeterAtDay(Integer dayNumber) {
 		return ubicationSystem.perimeteForPoint();
 	}
 

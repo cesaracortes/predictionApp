@@ -14,7 +14,7 @@ public interface IUbicationSystem<T> {
 
 	Boolean isCenterInsidePoints();
 
-	Point2D positionFor(T aPlanet);
+	Point2D positionFor(T element);
 
 	void remove(Point2D previousPosition);
 

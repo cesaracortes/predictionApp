@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.prediction.Wheather;
+import com.prediction.WheatherReport;
 import com.prediction.repostory.PredictionRespository;
 
 @RestController
@@ -24,9 +24,9 @@ public class PredictionController {
 
 	@RequestMapping(value = "/all", method = RequestMethod.GET)
 	public ResponseEntity<?> getPredictionForDay() {
-		Iterable<Wheather> findAll = repo.findAll();
+		Iterable<WheatherReport> findAll = repo.findAll();
 		List<String> all = new LinkedList<String>();
-		for (Wheather prediction : findAll) {
+		for (WheatherReport prediction : findAll) {
 			all.add(prediction.to_json());
 		}
 		return new ResponseEntity<>(all, HttpStatus.OK);
@@ -35,7 +35,7 @@ public class PredictionController {
 
 	@RequestMapping(value = "/clima", method = RequestMethod.GET)
 	public ResponseEntity<?> getPredictionForDay(@RequestParam(value = "dia") Integer dayNumber) {
-		Wheather findOne = repo.findOne(dayNumber);
+		WheatherReport findOne = repo.findOne(dayNumber);
 		return new ResponseEntity<>(findOne.to_json(), HttpStatus.OK);
 	}
 

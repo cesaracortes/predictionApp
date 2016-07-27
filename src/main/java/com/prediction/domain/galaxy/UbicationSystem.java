@@ -11,8 +11,8 @@ import java.util.Set;
 
 import org.springframework.util.Assert;
 
-import com.prediction.domain.exceptions.PlanetsInTheSameOrbitException;
-import com.prediction.domain.gemoetrics.IGeometricShape;
+import com.prediction.domain.exceptions.ElementsInTheSamePositionException;
+import com.prediction.domain.exceptions.NotElementInTheSystemException;
 import com.prediction.domain.gemoetrics.Line;
 import com.prediction.domain.gemoetrics.Triangle;
 
@@ -22,27 +22,27 @@ public class UbicationSystem<T> implements IUbicationSystem<T> {
 	
 
 	@Override
-	public void put(T aPlanet, Point2D place) {
-		if (occupiedPlaces.containsKey(place) && occupiedPlaces.get(place) != aPlanet)
-			throw new PlanetsInTheSameOrbitException();
-		this.occupiedPlaces.put(place, aPlanet);
+	public void put(T element, Point2D place) {
+		if (occupiedPlaces.containsKey(place) && occupiedPlaces.get(place) != element)
+			throw new ElementsInTheSamePositionException("Already exists a element at position" + place.toString());
+		this.occupiedPlaces.put(place, element);
 	}
 
 	@Override
-	public Distance distanceFromCenter(T aPlanet) {
-		Point2D ubication = positionFor(aPlanet);
+	public Distance distanceFromCenter(T element) {
+		Point2D ubication = positionFor(element);
 		double amount = ubication.distance(new Point(0, 0));
 		return Distance.amountWithUnit(RoundUtils.round(amount), Unit.KM);
 	}
 
 	@Override
-	public Point2D positionFor(T aPlanet) {
+	public Point2D positionFor(T element) {
 		for (Point2D aPlace : occupiedPlaces.keySet()) {
-			if (occupiedPlaces.get(aPlace).equals(aPlanet)) {
+			if (occupiedPlaces.get(aPlace).equals(element)) {
 				return aPlace;
 			}
 		}
-		throw new NotElementInTheSystemException();
+		throw new NotElementInTheSystemException("The Element is not in the Ubications system");
 
 	}
 

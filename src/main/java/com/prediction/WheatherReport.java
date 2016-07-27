@@ -2,31 +2,30 @@ package com.prediction;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.Transient;
 
 @Entity
-public class Wheather implements  Comparable<Wheather>{
+public class WheatherReport implements  Comparable<WheatherReport>{
 
 	
 	@Id
 	private Integer aDayNumber;
-	@Transient
-	private WheatherIntensity intensity;
+	private Double intensity;
 	private WheatherType type;
+	private WheatherIntensityType intensityType = WheatherIntensityType.NORMAL;
 	
-	public Wheather() {
+	public WheatherReport() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Wheather(Integer aDayNumber , Double intensity , WheatherType type ) {
-		this.intensity = new WheatherIntensity(intensity,WheatherIntensityType.NORMAL);
+	public WheatherReport(Integer aDayNumber , Double intensity , WheatherType type ) {
+		this.intensity = intensity;
 		this.aDayNumber = aDayNumber;
 		this.type = type;
 	}
 
 	
 	public String to_json() {
-		String json = "{\"dia\":" + getDayNumber() + "," + "\"clima\":" + type.toString() + "}";
+		String json = "{\"dia\":" + getDayNumber() + "," + "\"clima\":" + type.toString() + "," + "\"intensity\":" + intensityType.toString()+ "}";
 		return json;
 	}
 
@@ -46,19 +45,19 @@ public class Wheather implements  Comparable<Wheather>{
 
 
 	@Override
-	public int compareTo(Wheather other) {
+	public int compareTo(WheatherReport other) {
 		return (int) (getIntensity() - other.getIntensity()) ;
 	}
 
 
 	public Double getIntensity() {
-		return intensity.getValue();
+		return intensity;
 	}
 
 
 
 	public void makeHigh() {
-		intensity.setType(WheatherIntensityType.HIGH);
+		intensityType = WheatherIntensityType.HIGH;
 		
 	}
 

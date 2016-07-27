@@ -6,12 +6,6 @@ import com.prediction.domain.planet.IPlanet;
 
 public class PositionCalculator {
 
-//	public Point2D calculate(IUbicationSystem<IPlanet> ubicationSystem, Integer dayNumber, IPlanet aPlanet) {
-//		double x_pos = (distanceFromSun(ubicationSystem,aPlanet).amount() * Math.cos(radiansTraveledAtDay(aPlanet.velocity(), dayNumber)));
-//		double y_pos = (distanceFromSun(ubicationSystem,aPlanet).amount() * Math.sin(radiansTraveledAtDay(aPlanet.velocity(), dayNumber)));
-//		return new Point2D.Double(x_pos, y_pos);
-//	}
-
 	private double radiansTraveledAtDay(Velocity velocity, Integer dayNumber) {
 		double degrees = velocity.amount() * dayNumber;
 		return Math.toRadians(degrees);

@@ -4,12 +4,10 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
-import java.awt.geom.Point2D;
-
 import org.junit.Ignore;
 import org.junit.Test;
 
-import com.prediction.domain.exceptions.PlanetsInTheSameOrbitException;
+import com.prediction.domain.exceptions.ElementsInTheSamePositionException;
 import com.prediction.domain.galaxy.Distance;
 import com.prediction.domain.galaxy.Galaxy;
 import com.prediction.domain.galaxy.IGalaxy;
@@ -41,7 +39,7 @@ public class TestGalaxy {
 		assertTrue(areAligned);
 	}
 
-	@Test(expected = PlanetsInTheSameOrbitException.class)
+	@Test(expected = ElementsInTheSamePositionException.class)
 	public void canNotHavePlanetsWithTheSameDistanceFromSun() {
 		IGalaxy aGalaxy = createGalaxyWithPlanets();
 		aGalaxy.addPlanet(PlanetFactory.createVulcano(), 500);
