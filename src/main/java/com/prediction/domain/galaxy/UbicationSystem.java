@@ -15,6 +15,7 @@ import com.prediction.domain.exceptions.ElementsInTheSamePositionException;
 import com.prediction.domain.exceptions.NotElementInTheSystemException;
 import com.prediction.domain.gemoetrics.Line;
 import com.prediction.domain.gemoetrics.Triangle;
+import com.prediction.domain.planet.IPlanet;
 
 public class UbicationSystem<T> implements IUbicationSystem<T> {
 
@@ -78,17 +79,42 @@ public class UbicationSystem<T> implements IUbicationSystem<T> {
 		return aTriangle.contains(new Point2D.Double(0, 0));
 	}
 
-	@Override
-	public void remove(Point2D position) {
+	private void remove(Point2D position) {
 		occupiedPlaces.remove(position);
 	}
 
 	@Override
-	public double perimeteForPoint() {
+	public double perimeteForPoints() {
 		Set<Point2D> positions = getPositions();
 		List<Point2D> points = new ArrayList<Point2D>(positions);
 		Triangle aTriangle = new Triangle(points.get(0), points.get(1), points.get(2));
 		return aTriangle.perimeter();
 	}
+
+	@Override
+	public void moveFromTo(T element, Point2D previousPosition, Point2D newPlace) {
+		remove(previousPosition);
+		put(element, newPlace);
+		
+	}
+
+	@Override
+	public UbicationDistribution distribution() {
+		if (areAligned(getPositions())) {
+			if(pointsAreAlignedToTheCenter()){
+				return UbicationDistribution.ALIGNED_TO_CENTER;
+			}else{
+				return UbicationDistribution.ALIGNED;
+			}
+		}else{
+			if(isCenterInsidePoints()){
+				return UbicationDistribution.CENTER_INSIDE_TRINGLE;
+			}else{
+				return UbicationDistribution.CENTER_OUTSIDE_TRINGLE;
+			}
+		}
+	}
+	
+	
 
 }

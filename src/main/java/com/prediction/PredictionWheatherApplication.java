@@ -5,11 +5,11 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class HelloRestApplication {
+public class PredictionWheatherApplication {
 
 	
 	public static void main(String[] args)  {
-		SpringApplication.run(HelloRestApplication.class, args);
+		SpringApplication.run(PredictionWheatherApplication.class, args);
 	}
 	
 	

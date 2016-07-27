@@ -10,14 +10,13 @@ public interface IGalaxy {
 
 	boolean hasPlanets();
 
-	// TODO cambiar integers por distance
 	void addPlanet(IPlanet aPlanet, Integer distanceFromSun);
 
 	Distance distanceTraveledAtDay(Integer dayNumber, IPlanet vulcano);
 
-	boolean arePlanetsAlignedAtDay(Integer i);
+	Boolean arePlanetsAlignedAtDay(Integer i);
 
-	boolean allAreAlignedToSunAtDay(Integer aDayNumber);
+	Boolean allAreAlignedToSunAtDay(Integer aDayNumber);
 
 	Point2D positionAtDay(Integer dayNumber, IPlanet vulcano);
 
@@ -25,9 +24,13 @@ public interface IGalaxy {
 
 	Distance distanceFromSun(IPlanet aPlanet);
 
-	double perimeterAtDay(Integer aDayNumber);
+	Double currentPerimeterFormedByPlanets();
 
 	List<Point2D> planetsPositions(Integer dayNumber);
+
+	IPlanetsDistribution move();
+
+	WheatherStatus weather();
 
 
 

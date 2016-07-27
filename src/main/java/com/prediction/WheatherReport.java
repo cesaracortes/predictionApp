@@ -3,70 +3,66 @@ package com.prediction;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
-@Entity
-public class WheatherReport implements  Comparable<WheatherReport>{
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.prediction.domain.galaxy.WheatherIntensityType;
+import com.prediction.domain.galaxy.WheatherType;
 
-	
+@Entity
+public class WheatherReport  {
+
 	@Id
-	private Integer aDayNumber;
-	private Double intensity;
+	private Integer day;
 	private WheatherType type;
-	private WheatherIntensityType intensityType = WheatherIntensityType.NORMAL;
+	private WheatherIntensityType intensityType;
 	
 	public WheatherReport() {
 		// TODO Auto-generated constructor stub
 	}
+	
 
-	public WheatherReport(Integer aDayNumber , Double intensity , WheatherType type ) {
-		this.intensity = intensity;
-		this.aDayNumber = aDayNumber;
+	public WheatherReport(Integer dayNumber, WheatherType type, WheatherIntensityType intensityType) {
+		this.day = dayNumber;
 		this.type = type;
+		this.setIntensityType(intensityType);
 	}
-
+	
 	
 	public String to_json() {
-		String json = "{\"dia\":" + getDayNumber() + "," + "\"clima\":" + type.toString() + "," + "\"intensity\":" + intensityType.toString()+ "}";
+		ObjectMapper mapper = new ObjectMapper();
+		String json = "";
+		try {
+			json = mapper.writeValueAsString(this);
+		} catch (JsonProcessingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+//		String json = "{\"dia\":" + "\"" + getDayNumber() + "," + "\"clima\":" + getType().toString() + "," + "\"intensity\":" + intensityType.toString()+ "}";
 		return json;
 	}
-
-	public Integer getDayNumber() {
-		return aDayNumber;
-	}
-
-	public void setaDayNumber(Integer aDayNumber) {
-		this.aDayNumber = aDayNumber;
+	
+	public Integer getDay() {
+		return day;
 	}
 
 
-
-	public Boolean isRainy() {
-		return WheatherType.RAIN.equals(type);
+	public WheatherType getClima() {
+		return type;
 	}
 
 
-	@Override
-	public int compareTo(WheatherReport other) {
-		return (int) (getIntensity() - other.getIntensity()) ;
+	public WheatherIntensityType getIntensityType() {
+		return intensityType;
 	}
 
 
-	public Double getIntensity() {
-		return intensity;
-	}
-
-
-
-	public void makeHigh() {
-		intensityType = WheatherIntensityType.HIGH;
-		
+	public void setIntensityType(WheatherIntensityType intensityType) {
+		this.intensityType = intensityType;
 	}
 
 
 	
-
-
-
 	
-		
 
 }

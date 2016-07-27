@@ -16,9 +16,11 @@ public interface IUbicationSystem<T> {
 
 	Point2D positionFor(T element);
 
-	void remove(Point2D previousPosition);
+	double perimeteForPoints();
 
-	double perimeteForPoint();
+	void moveFromTo(T aPlanet, Point2D previousPosition, Point2D newPlace);
+
+	UbicationDistribution distribution();
 	
 
 }

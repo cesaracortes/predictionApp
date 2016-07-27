@@ -23,7 +23,7 @@ public class PredictionJob  implements ApplicationListener<ApplicationReadyEvent
 	public  void execute() {
 		int totalDays = 365*10;
 		IGalaxy aGalaxy = createGalaxyWithPlanets();
-		List<WheatherReport> predictions = Prediction.predictionsUntil(aGalaxy,totalDays);
+		List<WheatherReport> predictions = PredictionReporter.predictionsUntil(aGalaxy,totalDays);
 		repo.save(predictions);
 		
 		
