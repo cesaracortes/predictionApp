@@ -4,7 +4,7 @@ import java.awt.geom.Point2D;
 
 import org.junit.Test;
 
-import com.galaxy.gemoetrics.Line;
+import com.prediction.domain.gemoetrics.Line;
 
 public class TestLine {
 	
@@ -14,7 +14,6 @@ public class TestLine {
 	public void testEcuation() {
 		Line aLine = new Line(new Point2D.Double(0,2), new Point2D.Double(0,4));
 		
-		System.out.println(aLine.toString());
 	};
 
 }

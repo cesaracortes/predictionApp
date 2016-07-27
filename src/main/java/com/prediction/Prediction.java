@@ -1,10 +1,10 @@
-package com.example.hellorest;
+package com.prediction;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
-import com.prediction.galaxy.IGalaxy;
-import com.prediction.galaxy.IPrediction;
+import com.prediction.domain.galaxy.IGalaxy;
+import com.prediction.domain.galaxy.IPrediction;
 
 @Entity
 public class Prediction implements IPrediction {
@@ -24,7 +24,7 @@ public class Prediction implements IPrediction {
 		this.dayNumber = dayNumber;
 	}
 
-	public static IPrediction forDay(Integer aDayNumber, IGalaxy aGalaxy) {
+	public static Prediction forDay(Integer aDayNumber, IGalaxy aGalaxy) {
 		if (aGalaxy.allAreAlignedToSunAtDay(aDayNumber)) {
 			return new Prediction("Sequia", aDayNumber);
 		} else if (aGalaxy.sunIsInsidePlanetsTriangleAtDay(aDayNumber)) {

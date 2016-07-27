@@ -7,10 +7,10 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Test;
 import org.mockito.Mockito;
 
-import com.example.hellorest.Prediction;
-import com.prediction.galaxy.Galaxy;
-import com.prediction.galaxy.IGalaxy;
-import com.prediction.galaxy.IPrediction;
+import com.prediction.Prediction;
+import com.prediction.domain.galaxy.Galaxy;
+import com.prediction.domain.galaxy.IGalaxy;
+import com.prediction.domain.galaxy.IPrediction;
 
 public class TestPredictor {
 	

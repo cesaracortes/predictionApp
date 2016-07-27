@@ -9,15 +9,15 @@ import java.awt.geom.Point2D;
 import org.junit.Ignore;
 import org.junit.Test;
 
-import com.galaxy.exceptions.PlanetsInTheSameOrbitException;
-import com.prediction.galaxy.Distance;
-import com.prediction.galaxy.Galaxy;
-import com.prediction.galaxy.IGalaxy;
-import com.prediction.galaxy.PlanetFactory;
-import com.prediction.galaxy.Unit;
-import com.prediction.galaxy.Velocity;
-import com.prediction.planet.IPlanet;
-import com.prediction.planet.Planet;
+import com.prediction.domain.exceptions.PlanetsInTheSameOrbitException;
+import com.prediction.domain.galaxy.Distance;
+import com.prediction.domain.galaxy.Galaxy;
+import com.prediction.domain.galaxy.IGalaxy;
+import com.prediction.domain.galaxy.PlanetFactory;
+import com.prediction.domain.galaxy.Unit;
+import com.prediction.domain.galaxy.Velocity;
+import com.prediction.domain.planet.IPlanet;
+import com.prediction.domain.planet.Planet;
 
 public class TestGalaxy {
 
@@ -42,7 +42,7 @@ public class TestGalaxy {
 	}
 
 	@Test(expected = PlanetsInTheSameOrbitException.class)
-	public void cantHavePlanetsWithTheSameDistanceFromSun() {
+	public void canNotHavePlanetsWithTheSameDistanceFromSun() {
 		IGalaxy aGalaxy = createGalaxyWithPlanets();
 		aGalaxy.addPlanet(PlanetFactory.createVulcano(), 500);
 		aGalaxy.addPlanet(PlanetFactory.createFerengi(), 500);

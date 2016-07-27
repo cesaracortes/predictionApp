@@ -3,11 +3,11 @@ package com.prediction.galaxy.test;
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.galaxy.exceptions.CreationException;
-import com.prediction.galaxy.Unit;
-import com.prediction.galaxy.Velocity;
-import com.prediction.planet.IPlanet;
-import com.prediction.planet.Planet;
+import com.prediction.domain.exceptions.CreationException;
+import com.prediction.domain.galaxy.Unit;
+import com.prediction.domain.galaxy.Velocity;
+import com.prediction.domain.planet.IPlanet;
+import com.prediction.domain.planet.Planet;
 
 public class TestPlanet {
 

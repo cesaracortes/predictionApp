@@ -1,7 +1,7 @@
-/Users/ccortes/Downloads/hello-rest/src/test/java/com/prediction/galaxy/test/TestGalaxy.java
-/Users/ccortes/Downloads/hello-rest/src/test/java/com/prediction/galaxy/test/TestTriangle.java
-/Users/ccortes/Downloads/hello-rest/src/test/java/com/prediction/galaxy/test/TestLine.java
-/Users/ccortes/Downloads/hello-rest/src/test/java/com/prediction/galaxy/test/TestPlanet.java
-/Users/ccortes/Downloads/hello-rest/src/test/java/com/prediction/galaxy/test/TestCoordinateSystem.java
-/Users/ccortes/Downloads/hello-rest/src/test/java/com/prediction/galaxy/test/TestPredictor.java
-/Users/ccortes/Downloads/hello-rest/src/test/java/com/example/hellorest/HelloRestApplicationTests.java
+/Users/ccortes/Downloads/prediction/src/test/java/com/prediction/galaxy/test/TestPositionCalculator.java
+/Users/ccortes/Downloads/prediction/src/test/java/com/prediction/galaxy/test/TestTriangle.java
+/Users/ccortes/Downloads/prediction/src/test/java/com/prediction/galaxy/test/TestPlanet.java
+/Users/ccortes/Downloads/prediction/src/test/java/com/prediction/galaxy/test/TestLine.java
+/Users/ccortes/Downloads/prediction/src/test/java/com/prediction/galaxy/test/TestPredictor.java
+/Users/ccortes/Downloads/prediction/src/test/java/com/prediction/galaxy/test/TestGalaxy.java
+/Users/ccortes/Downloads/prediction/src/test/java/com/prediction/galaxy/test/TestLocationSystem.java
