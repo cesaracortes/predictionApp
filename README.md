@@ -9,7 +9,7 @@ Para acceder a la información se encuentra disponible la siguiente API:
 
 # Para saber el cima en un día determinado.
 
-  http://galaxyprediction.herokuapp.com/clima?dia={dayNumber}
+ http://galaxyprediction.herokuapp.com/clima?dia={dayNumber}
   
   con dayNumber un dia en formato numerico, por ej, http://galaxyprediction.herokuapp.com/clima?dia=252 y la respuesta será de la forma : 
     {"day":252,"intensityType":"HIGH","clima":"RAIN"}
