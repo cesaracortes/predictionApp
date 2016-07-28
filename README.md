@@ -1,5 +1,6 @@
 # predictionApp
-      Una aplicación de prediccion de clima sobre una galaxia muy muy lejana
+      Una aplicación de predicción de clima sobre una galaxia muy muy lejana
+      La misma se encuentra "deployada" en http://galaxyprediction.herokuapp.com/
 
 
 Aplicación para la predicción climatica en una Galaxia con tres planetas.
@@ -15,13 +16,13 @@ Para acceder a la información se encuentra disponible la siguiente API:
   
   que indica el día consultado, el tipo de intensidad climática y el clima.
   
-# Para saber Cuántos períodos de sequía habrá: 
+# Para saber Cuántos periodos de sequía habrá: 
 
     http://galaxyprediction.herokuapp.com/dryDays
   
   Obteniendo como respuesta : {"dryDays":"489}
   
-# Para saber Cuántos períodos de lluvia habrá :
+# Para saber Cuántos periodos de lluvia habrá :
     http://galaxyprediction.herokuapp.com/rainyDays
   
   Obteniendo como respuesta : {"rainyDays":"292}
@@ -39,5 +40,11 @@ Para acceder a la información se encuentra disponible la siguiente API:
   
   Obteniendo como respuesta :  {"optimalDays":"1353}
   
+  
+ # Para ejecutar el código localmente, hacer un clone del repo y ejecutar
+ 
+      mvn clean install
+      mvn package
+      ejecutar el jar que esta en /target: java - jar predictionApp-rest-0.0.1-SNAPSHOT.jar
   
   
