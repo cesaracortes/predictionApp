@@ -4,8 +4,8 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import com.prediction.domain.exceptions.CreationException;
-import com.prediction.domain.galaxy.Unit;
-import com.prediction.domain.galaxy.Velocity;
+import com.prediction.domain.galaxy.movement.Unit;
+import com.prediction.domain.galaxy.movement.Velocity;
 import com.prediction.domain.planet.IPlanet;
 import com.prediction.domain.planet.Planet;
 

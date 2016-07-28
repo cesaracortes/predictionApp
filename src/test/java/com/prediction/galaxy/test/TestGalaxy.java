@@ -8,12 +8,12 @@ import org.junit.Ignore;
 import org.junit.Test;
 
 import com.prediction.domain.exceptions.ElementsInTheSamePositionException;
-import com.prediction.domain.galaxy.Distance;
 import com.prediction.domain.galaxy.Galaxy;
 import com.prediction.domain.galaxy.IGalaxy;
 import com.prediction.domain.galaxy.PlanetFactory;
-import com.prediction.domain.galaxy.Unit;
-import com.prediction.domain.galaxy.Velocity;
+import com.prediction.domain.galaxy.movement.Distance;
+import com.prediction.domain.galaxy.movement.Unit;
+import com.prediction.domain.galaxy.movement.Velocity;
 import com.prediction.domain.planet.IPlanet;
 import com.prediction.domain.planet.Planet;
 
@@ -27,7 +27,6 @@ public class TestGalaxy {
 
 	@Test
 	public void canHavePlanets() {
-		// TODO cambiar
 		IGalaxy aGalaxy = createGalaxyWithPlanets();
 		assertTrue(aGalaxy.hasPlanets());
 	}
@@ -35,7 +34,7 @@ public class TestGalaxy {
 	@Test
 	public void planetsAreAlignedWhenGalaxyIsCreated() {
 		IGalaxy aGalaxy = createGalaxyWithPlanets();
-		Boolean areAligned = aGalaxy.arePlanetsAlignedAtDay(0);
+		Boolean areAligned = aGalaxy.arePlanetsAlignedAtDay();
 		assertTrue(areAligned);
 	}
 
@@ -67,7 +66,10 @@ public class TestGalaxy {
 		aGalaxy.addPlanet(vulcano, 500);
 		aGalaxy.addPlanet(ferengi, 1000);
 		aGalaxy.addPlanet(betasoide, 2000);
-		assertTrue(aGalaxy.arePlanetsAlignedAtDay(5));	
+		for (int i = 1; i <= 5; i++) {
+			aGalaxy.movePlanets();
+			assertTrue(aGalaxy.arePlanetsAlignedAtDay());	
+		}
 	}
 
 
@@ -84,14 +86,10 @@ public class TestGalaxy {
 	@Test
 	public void allPlanetsAreAlignedToSunWhenGalaxyIsCreated() {
 		IGalaxy aGalaxy = createGalaxyWithPlanets();
-		assertTrue(aGalaxy.allAreAlignedToSunAtDay(0));
+		assertTrue(aGalaxy.allAreAlignedToSunAtDay());
 	}
 	
-	public void testSunIsInsidePlanets(){
-		IGalaxy aGalaxy = createGalaxyWithPlanets();
-		aGalaxy.sunIsInsidePlanetsTriangleAtDay(2);
-		
-	}
+
 
 	@Test
 	@Ignore
@@ -102,7 +100,8 @@ public class TestGalaxy {
 		aGalaxy.addPlanet(vulcano, 500);
 		aGalaxy.addPlanet(ferengi, 500);
 		for (int i = 1; i < 100; i++) {
-			assertTrue(aGalaxy.arePlanetsAlignedAtDay(i));
+			aGalaxy.movePlanets();
+			assertTrue(aGalaxy.arePlanetsAlignedAtDay());
 		}
 	}
 

@@ -8,7 +8,8 @@ import java.util.Set;
 
 import org.springframework.util.Assert;
 
-import com.prediction.domain.galaxy.RoundUtils;
+import com.prediction.domain.galaxy.movement.RoundUtils;
+import com.prediction.wheather.WheatherStatus;
 
 public class Line implements IGeometricShape{
 
@@ -71,5 +72,8 @@ public class Line implements IGeometricShape{
 		Line line = new Line(list.get(0), list.get(1));
 		return line.contains(positions);
 	}
+
+
+
 
 }

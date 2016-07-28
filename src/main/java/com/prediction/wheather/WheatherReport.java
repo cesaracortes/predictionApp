@@ -1,12 +1,10 @@
-package com.prediction;
+package com.prediction.wheather;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.prediction.domain.galaxy.WheatherIntensityType;
-import com.prediction.domain.galaxy.WheatherType;
 
 @Entity
 public class WheatherReport  {

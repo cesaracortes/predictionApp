@@ -1,4 +1,4 @@
-package com.prediction;
+package com.prediction.wheather;
 
 public enum WheatherType {
 	NORMAL ("Sequia"),
@@ -15,6 +15,11 @@ public enum WheatherType {
 	
 	public String type() {
 		return this.description;
+	}
+	
+	@Override
+	public String toString() {
+		return description;
 	}
 
 }

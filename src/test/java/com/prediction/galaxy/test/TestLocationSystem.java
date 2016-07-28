@@ -6,8 +6,8 @@ import java.awt.geom.Point2D;
 
 import org.junit.Test;
 
-import com.prediction.domain.galaxy.IUbicationSystem;
-import com.prediction.domain.galaxy.UbicationSystem;
+import com.prediction.domain.galaxy.location.IUbicationSystem;
+import com.prediction.domain.galaxy.location.UbicationSystem;
 
 public class TestLocationSystem {
 	

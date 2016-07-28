@@ -1,4 +1,4 @@
-package com.prediction.domain.galaxy;
+package com.prediction.domain.galaxy.location;
 
 import java.awt.Point;
 import java.awt.geom.Point2D;
@@ -13,9 +13,11 @@ import org.springframework.util.Assert;
 
 import com.prediction.domain.exceptions.ElementsInTheSamePositionException;
 import com.prediction.domain.exceptions.NotElementInTheSystemException;
+import com.prediction.domain.galaxy.movement.Distance;
+import com.prediction.domain.galaxy.movement.RoundUtils;
+import com.prediction.domain.galaxy.movement.Unit;
 import com.prediction.domain.gemoetrics.Line;
 import com.prediction.domain.gemoetrics.Triangle;
-import com.prediction.domain.planet.IPlanet;
 
 public class UbicationSystem<T> implements IUbicationSystem<T> {
 
@@ -48,7 +50,6 @@ public class UbicationSystem<T> implements IUbicationSystem<T> {
 	}
 
 
-	@Override
 	public Boolean arePointsAligned() {
 		Set<Point2D> positions = getPositions();
 		return areAligned(positions);
@@ -62,16 +63,13 @@ public class UbicationSystem<T> implements IUbicationSystem<T> {
 		return Line.areAligned(positions);
 	}
 
-	@Override
 	public Boolean pointsAreAlignedToTheCenter() {
 		Set<Point2D> positions = new HashSet<Point2D>(getPositions());
 		positions.add(new Point2D.Double(0, 0));
 		return areAligned(positions);
 	}
 
-	@Override
 	public Boolean isCenterInsidePoints() {
-		// Se necesitan al menos tres puntos para definir un triangulo
 		Set<Point2D> positions = getPositions();
 		Assert.isTrue(positions.size() >= 3);
 		List<Point2D> points = new ArrayList<Point2D>(positions);
@@ -98,6 +96,7 @@ public class UbicationSystem<T> implements IUbicationSystem<T> {
 		
 	}
 
+	//TODO: arreglar tema de  los if 
 	@Override
 	public UbicationDistribution distribution() {
 		if (areAligned(getPositions())) {

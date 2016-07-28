@@ -1,0 +1,5 @@
+com\prediction\galaxy\test\TestPositionCalculator.class
+com\prediction\galaxy\test\TestPlanet.class
+com\prediction\galaxy\test\TestGalaxy.class
+com\prediction\galaxy\test\TestTriangle.class
+com\prediction\galaxy\test\TestLocationSystem.class

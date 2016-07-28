@@ -1,5 +1,7 @@
 package com.prediction.domain.galaxy;
 
+import com.prediction.domain.galaxy.movement.Unit;
+import com.prediction.domain.galaxy.movement.Velocity;
 import com.prediction.domain.planet.IPlanet;
 import com.prediction.domain.planet.Planet;
 

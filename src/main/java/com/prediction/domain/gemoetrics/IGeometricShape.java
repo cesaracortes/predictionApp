@@ -3,7 +3,7 @@ package com.prediction.domain.gemoetrics;
 import java.awt.geom.Point2D;
 import java.util.Set;
 
-import com.prediction.domain.galaxy.WheatherStatus;
+import com.prediction.wheather.WheatherStatus;
 
 public interface IGeometricShape {
 

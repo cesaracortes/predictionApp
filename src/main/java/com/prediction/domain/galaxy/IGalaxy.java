@@ -1,36 +1,70 @@
 package com.prediction.domain.galaxy;
 
 import java.awt.geom.Point2D;
-import java.util.List;
 
+import com.prediction.domain.galaxy.movement.Distance;
 import com.prediction.domain.planet.IPlanet;
+import com.prediction.wheather.WheatherStatus;
 
 
 public interface IGalaxy {
 
-	boolean hasPlanets();
+	public boolean hasPlanets();
 
-	void addPlanet(IPlanet aPlanet, Integer distanceFromSun);
+	public void addPlanet(IPlanet aPlanet, Integer distanceFromSun);
 
-	Distance distanceTraveledAtDay(Integer dayNumber, IPlanet vulcano);
+	/**
+	 * 
+	 * @param dayNumber
+	 * @param vulcano
+	 * @return La distancia viajada por un planeta en N dias.
+	 */
+	public Distance distanceTraveledAtDay(Integer dayNumber, IPlanet vulcano);
 
-	Boolean arePlanetsAlignedAtDay(Integer i);
+	/**
+	 * @return true si los planetas están alineados el dia de hoy
+	 */
+	public Boolean arePlanetsAlignedAtDay();
 
-	Boolean allAreAlignedToSunAtDay(Integer aDayNumber);
+	/**
+	 * 
+	 * @param 
+	 * @return true si los planetas estan alineados con el sol el dia de hoy
+	 */
+	public Boolean allAreAlignedToSunAtDay();
 
-	Point2D positionAtDay(Integer dayNumber, IPlanet vulcano);
+	/**
+	 * 
+	 * @param dayNumber
+	 * @param vulcano
+	 * @return La posicion del planeta el dia de hoy
+	 */
+	public Point2D positionAtDay(IPlanet vulcano);
 
-	Boolean sunIsInsidePlanetsTriangleAtDay(Integer aDayNumber);
+	/**
+	 * 
+	 * @param aDayNumber
+	 * @return true si el sol está adentro del triangulo formado por los planetas el dia de hoy
+	 */
+	public Boolean sunIsInsidePlanetsTriangleAtDay();
 
-	Distance distanceFromSun(IPlanet aPlanet);
+	/**
+	 * 
+	 * @param aPlanet
+	 * @return La distancia hacia la posicion del sol.
+	 */
+	public Distance distanceFromSun(IPlanet aPlanet);
 
-	Double currentPerimeterFormedByPlanets();
+	/**
+	 * Mueve los planetas un dia segun la orbita que cada uno realiza
+	 */
+	public void movePlanets();
 
-	List<Point2D> planetsPositions(Integer dayNumber);
-
-	IPlanetsDistribution move();
-
-	WheatherStatus weather();
+	/**
+	 * Devuelve el estado del Clima en la Galaxia en el momento actual;
+	 * @return
+	 */
+	public WheatherStatus currentWeather();
 
 
 

@@ -1,4 +1,4 @@
-package com.prediction.domain.galaxy;
+package com.prediction.domain.galaxy.movement;
 
 public class RoundUtils {
 

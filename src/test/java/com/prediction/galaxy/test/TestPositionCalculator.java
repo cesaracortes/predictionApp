@@ -5,11 +5,11 @@ import java.awt.geom.Point2D;
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.prediction.domain.galaxy.Distance;
-import com.prediction.domain.galaxy.IPositionCalculator;
 import com.prediction.domain.galaxy.PolarToCartesianPositionCalculator;
-import com.prediction.domain.galaxy.Unit;
-import com.prediction.domain.galaxy.Velocity;
+import com.prediction.domain.galaxy.location.IPositionCalculator;
+import com.prediction.domain.galaxy.movement.Distance;
+import com.prediction.domain.galaxy.movement.Unit;
+import com.prediction.domain.galaxy.movement.Velocity;
 
 public class TestPositionCalculator {
 	

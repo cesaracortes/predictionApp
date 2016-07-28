@@ -1,9 +1,11 @@
 package com.prediction.domain.gemoetrics;
 
 import java.awt.geom.Point2D;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Set;
 
-import com.prediction.domain.galaxy.RoundUtils;
+import com.prediction.domain.galaxy.movement.RoundUtils;
 
 public class Triangle implements IGeometricShape {
 
@@ -15,6 +17,13 @@ public class Triangle implements IGeometricShape {
 		this.p1 = a;
 		this.p2 = b;
 		this.p3 = c;
+	}
+
+	public Triangle(Set<Point2D> positions) {
+		List<Point2D> list = new LinkedList<>(positions);
+		this.p1 = list.get(0);
+		this.p2 = list.get(1);
+		this.p3 = list.get(3);
 	}
 
 	@Override

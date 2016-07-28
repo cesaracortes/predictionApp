@@ -11,10 +11,19 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import com.prediction.domain.galaxy.location.IPlanetsDistribution;
+import com.prediction.domain.galaxy.location.IPositionCalculator;
+import com.prediction.domain.galaxy.location.IUbicationSystem;
+import com.prediction.domain.galaxy.location.UbicationDistribution;
+import com.prediction.domain.galaxy.location.UbicationSystem;
+import com.prediction.domain.galaxy.movement.Distance;
+import com.prediction.domain.galaxy.movement.Unit;
 import com.prediction.domain.gemoetrics.IGeometricShape;
 import com.prediction.domain.gemoetrics.Line;
 import com.prediction.domain.gemoetrics.Triangle;
 import com.prediction.domain.planet.IPlanet;
+import com.prediction.wheather.WheatherStatus;
+import com.prediction.wheather.WheatherType;
 
 /**
  * This Class represents a Galaxy, this class is responsible for the 
@@ -52,18 +61,13 @@ public class Galaxy implements IGalaxy {
 	}
 
 	@Override
-	public Point2D positionAtDay(Integer dayNumber, IPlanet aPlanet) {
-		Point2D previousPosition = ubicationSystem.positionFor(aPlanet);
-		Point2D newPlace = positionCalculator.calculate(radius(aPlanet),aPlanet.velocity(),dayNumber);
-		ubicationSystem.moveFromTo(aPlanet,previousPosition, newPlace);
-		return newPlace;
+	public Point2D positionAtDay(IPlanet aPlanet) {
+		return  ubicationSystem.positionFor(aPlanet);
 	}
 
 	private Distance radius(IPlanet aPlanet) {
 		return ubicationSystem.distanceFromCenter(aPlanet);
 	}
-
-	
 
 	
 	@Override
@@ -73,21 +77,18 @@ public class Galaxy implements IGalaxy {
 	}
 
 	@Override
-	public Boolean arePlanetsAlignedAtDay(Integer aDayNumber) {
-		planets.stream().forEach(aPlanet -> positionAtDay(aDayNumber, aPlanet));
-		return ubicationSystem.arePointsAligned();
+	public Boolean arePlanetsAlignedAtDay() {
+		return getCurrentPlanetDistribution().arePlanetsAligned();
 	}
 
 	@Override
-	public Boolean allAreAlignedToSunAtDay(Integer aDayNumber) {
-		planets.stream().forEach(aPlanet -> positionAtDay(aDayNumber, aPlanet));
-		return ubicationSystem.pointsAreAlignedToTheCenter();
+	public Boolean allAreAlignedToSunAtDay() {
+		return getCurrentPlanetDistribution().arePlanetsAlignedToSun();
 	}
 
 	@Override
-	public Boolean sunIsInsidePlanetsTriangleAtDay(Integer aDayNumber) {
-		planets.stream().forEach(aPlanet -> positionAtDay(aDayNumber, aPlanet));
-		return ubicationSystem.isCenterInsidePoints();
+	public Boolean sunIsInsidePlanetsTriangleAtDay() {
+		return getCurrentPlanetDistribution().isSunInsidePlanetsTriangle();
 	}
 
 
@@ -96,45 +97,48 @@ public class Galaxy implements IGalaxy {
 		return radius(aPlanet);
 	}
 
-	@Override
-	public Double currentPerimeterFormedByPlanets() {
+	private Double currentPerimeterFormedByPlanets() {
 		return ubicationSystem.perimeteForPoints();
 	}
 
-	@Override
-	public List<Point2D> planetsPositions(Integer dayNumber) {
-		Stream<Point2D> map = planets.stream().map(aPlanet -> ubicationSystem.positionFor(aPlanet));
-		return map.collect(Collectors.toList());
-		
-	}
 	
-	public IPlanetsDistribution move(){
+	public void movePlanets(){
 		currentDay++;
 		Set<Point2D> positions = new HashSet<>();
 		for (IPlanet iPlanet : planets) {
-			Point2D positionFor = ubicationSystem.positionFor(iPlanet);
-			Point2D newPlace = positionCalculator.calculate(radius(iPlanet),iPlanet.velocity(),currentDay);
-			ubicationSystem.moveFromTo(iPlanet, positionFor, newPlace);
-			positions.add(newPlace);
+			positions.add(movePlanet(iPlanet));
 		}
-		return getPointDistribution().get(ubicationSystem.distribution());
-	
+	}
+
+	private Point2D movePlanet(IPlanet iPlanet) {
+		Point2D positionFor = ubicationSystem.positionFor(iPlanet);
+		Point2D newPlace = positionCalculator.calculate(radius(iPlanet),iPlanet.velocity(),currentDay);
+		ubicationSystem.moveFromTo(iPlanet, positionFor, newPlace);
+		return newPlace;
 	}
 
 	private Map<UbicationDistribution, IPlanetsDistribution> getPointDistribution() {
 		if(pointDistribution.isEmpty()){
-			pointDistribution.put(UbicationDistribution.ALIGNED, new PlanetsAlignedDistribution());
-			pointDistribution.put(UbicationDistribution.ALIGNED_TO_CENTER, new PlanetsAlignedToSunDistribution());
-			pointDistribution.put(UbicationDistribution.CENTER_INSIDE_TRINGLE, new PlanetsTriangleWithSunDistribution());
-			pointDistribution.put(UbicationDistribution.CENTER_OUTSIDE_TRINGLE, new PlanetsTriangleDistribution());
+			configurateDistributionPosibilities();
 		}
 		return pointDistribution;
 	}
 
+	private void configurateDistributionPosibilities() {
+		pointDistribution.put(UbicationDistribution.ALIGNED, new PlanetsAlignedDistribution());
+		pointDistribution.put(UbicationDistribution.ALIGNED_TO_CENTER, new PlanetsAlignedToSunDistribution());
+		pointDistribution.put(UbicationDistribution.CENTER_INSIDE_TRINGLE, new PlanetsTriangleWithSunDistribution());
+		pointDistribution.put(UbicationDistribution.CENTER_OUTSIDE_TRINGLE, new PlanetsTriangleDistribution());
+	}
+
 	@Override
-	public WheatherStatus weather() {
-		IPlanetsDistribution planetsDistribution = getPointDistribution().get(ubicationSystem.distribution());
+	public WheatherStatus currentWeather() {
+		IPlanetsDistribution planetsDistribution = getCurrentPlanetDistribution();
 		return wheatherFor(planetsDistribution);
+	}
+
+	private IPlanetsDistribution getCurrentPlanetDistribution() {
+		return getPointDistribution().get(ubicationSystem.distribution());
 	}
 
 	private WheatherStatus wheatherFor(IPlanetsDistribution planetsDistribution) {

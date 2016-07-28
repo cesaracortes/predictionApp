@@ -13,6 +13,7 @@ import com.prediction.domain.galaxy.IGalaxy;
 import com.prediction.domain.galaxy.PlanetFactory;
 import com.prediction.domain.planet.IPlanet;
 import com.prediction.repostory.PredictionRespository;
+import com.prediction.wheather.WheatherReport;
 
 @Component
 public class PredictionJob  implements ApplicationListener<ApplicationReadyEvent>{
@@ -25,8 +26,6 @@ public class PredictionJob  implements ApplicationListener<ApplicationReadyEvent
 		IGalaxy aGalaxy = createGalaxyWithPlanets();
 		List<WheatherReport> predictions = PredictionReporter.predictionsUntil(aGalaxy,totalDays);
 		repo.save(predictions);
-		
-		
 	}
 
 	private  IGalaxy createGalaxyWithPlanets() {
