@@ -16,6 +16,7 @@ Para acceder a la información se encuentra disponible la siguiente API:
   que indica el día consultado, el tipo de intensidad climática y el clima.
   
 # Para saber Cuántos períodos de sequía habrá: 
+
     http://galaxyprediction.herokuapp.com/dryDays
   
   Obteniendo como respuesta : {"dryDays":"489}
@@ -29,9 +30,11 @@ Para acceder a la información se encuentra disponible la siguiente API:
     http://galaxyprediction.herokuapp.com/maxRainyDays
   
  Obteniendo como respuesta una lista de dias con la misma intensidad de lluvia la cual es máxima:
+ 
   Ejemplo: {"day":3132,"intensityType":"HIGH","clima":"RAIN"},{"day":3492,"intensityType":"HIGH","clima":"RAIN"}]
   
 # Para saber Cuántos períodos de condiciones óptimas de presión y temperatura habrá:
+
     http://galaxyprediction.herokuapp.com/optimalDays
   
   Obteniendo como respuesta :  {"optimalDays":"1353}
