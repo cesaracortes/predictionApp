@@ -22,6 +22,12 @@ public class PredictionController {
 	
 	@Inject
 	private PredictionRespository repo;
+	
+	@RequestMapping(value = "/", method = RequestMethod.GET)
+	public ResponseEntity<?> index() {
+		String result = "This is the main page for PredictionApp, please use the follow links for information: https://github.com/cesaracortes/predictionApp ";
+		return new ResponseEntity<>(result, HttpStatus.OK);
+	}
 
 
 	@RequestMapping(value = "/dryDays", method = RequestMethod.GET)
